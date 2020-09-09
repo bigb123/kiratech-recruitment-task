@@ -28,8 +28,7 @@ jobs:
         run: |
           echo $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
           echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
-          echo "List files here"
-          ls -l
           export ANSIBLE_HOST_KEY_CHECKING=False
-          pip3 install setuptools ansible googleauth requests
+          sudo apt update && sudo apt install python3-setuptools
+          pip3 install ansible googleauth requests
           ansible-playbook -i ansible_hosts docker-swarm-deployment.yml
