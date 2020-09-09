@@ -31,5 +31,5 @@ jobs:
           echo "List files here"
           ls -l
           export ANSIBLE_HOST_KEY_CHECKING=False
-          pip3 install ansible googleauth requests
+          pip3 install setuptools ansible googleauth requests
           ansible-playbook -i ansible_hosts docker-swarm-deployment.yml
