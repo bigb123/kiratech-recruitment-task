@@ -1,0 +1,6 @@
+---
+# Google Compute Engine required authentication global variables
+# (Replace 'YOUR_PROJECT_ID' with the Project ID used in creating your GCP project.)
+project: kiratech-288910
+credentials_file: gcp_credentials_file.json
+auth_kind: serviceaccount
