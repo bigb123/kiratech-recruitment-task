@@ -22,10 +22,14 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
+        env:
+          GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
+          GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
         run: |
-          sudo apt update
-          sudo apt install software-properties-common
-          sudo apt-add-repository --yes --update ppa:ansible/ansible
-          sudo apt install ansible
-          ansible --version
-          which python3
+          cat $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
+          cat $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
+          echo "List files here"
+          ls -l
+          export ANSIBLE_HOST_KEY_CHECKING=False
+          pip3 install ansible googleauth requests
+          ansible-playbook -i ansible_hosts docker-swarm-deployment.yml
