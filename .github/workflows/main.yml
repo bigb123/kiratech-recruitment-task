@@ -26,8 +26,8 @@ jobs:
           GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
           GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
         run: |
-          cat $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
-          cat $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
+          echo $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
+          echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
           echo "List files here"
           ls -l
           export ANSIBLE_HOST_KEY_CHECKING=False
