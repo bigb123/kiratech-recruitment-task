@@ -1,6 +1,6 @@
 ---
 # Variables defined for us-central1-a
-name_zonea: Docker-swarm1
-name_zoneb: Docker-swarm2
+name_zonea: docker-swarm1
+name_zoneb: docker-swarm2
 zone: us-central1-a
 region: us-central1
