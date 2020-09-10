@@ -1,8 +1,14 @@
 ---
-- name: Run apt update & install docker
-  command: apt update && apt install -y docker.io
+- name: Configure yum
+  command: yum install -y yum-utils && yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+- name: Install docker
+  command: yum install docker-ce
   
-- name: check docker version
+- name: Start docker service
+  command: systemctl start docker
+
+- name: Check docker version
   command: docker version
 
 # - name: Set file stats on index.html
