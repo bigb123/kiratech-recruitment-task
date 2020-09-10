@@ -11,7 +11,8 @@
   yum: 
     name: containerd.io
     state: latest
-    
+    enablerepo: docker-ce-test
+
 - name: Install docker-ce
   yum:
     name: docker-ce
