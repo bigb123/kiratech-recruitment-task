@@ -1,5 +1,8 @@
 name: Destroy GCP resources
 
+on:
+  workflow_dispatch
+  
 env:
   GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
   GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
