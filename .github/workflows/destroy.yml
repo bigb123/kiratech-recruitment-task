@@ -1,4 +1,4 @@
-name: Destroy GCP resources
+name: Destroy
 
 on:
   workflow_dispatch
@@ -22,5 +22,5 @@ jobs:
           sudo apt install software-properties-common
           sudo apt-add-repository --yes --update ppa:ansible/ansible
           sudo apt install ansible python3-google-auth
-          ansible-playbook clean-up.yml
+          ansible-playbook cleanup.yml
             
