@@ -27,6 +27,7 @@
             boot: true
             initialize_params:
               source_image: "{{ image }}"
+              disk_size_gb: "{{ disk_size_base-2_in_GB }}"
         network_interfaces:
           - access_configs:
               - name: External NAT
