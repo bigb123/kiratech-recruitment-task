@@ -22,6 +22,9 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Install Ansible and its dependencies
+        env:
+          GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
+          GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
         run: |
           echo $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
           echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
@@ -30,9 +33,10 @@ jobs:
           sudo apt install software-properties-common
           sudo apt-add-repository --yes --update ppa:ansible/ansible
           sudo apt install ansible python3-google-auth
-          
-      - name: Run Ansible playbook
-        env:
-          GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
-          GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
-        run: ansible-playbook -i ansible_hosts docker-swarm-deployment.yml
+          ansible-playbook -i ansible_hosts docker-swarm-deployment.yml
+
+      #- name: Run Ansible playbook
+      #  env:
+      #    GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
+      #    GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
+      #  run: ansible-playbook -i ansible_hosts docker-swarm-deployment.yml
