@@ -1,12 +1,21 @@
 ---
-- name: Configure yum
-  command: yum install -y yum-utils && yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+- name: Add yum package yum-utils
+  yum: 
+    name: yum-utils
+    state: latest 
+
+- name: Add yum docker repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
 - name: Install docker
-  command: yum install docker-ce
+  yum:
+    name: docker-ce
+    state: latest
   
 - name: Start docker service
-  command: systemctl start docker
+  systemd:
+    name: docker 
+    state: started
 
 - name: Check docker version
   command: docker version
