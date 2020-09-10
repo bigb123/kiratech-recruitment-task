@@ -1,9 +1,6 @@
 ---
-- name: Run apt update
-  command: apt update
-
-- name: Install apache on instances
-  apt: pkg=docker.io state=present
+- name: Run apt update & install docker
+  command: apt update && apt install -y docker.io
   
 - name: check docker version
   command: docker version
