@@ -2,20 +2,10 @@ name: Destroy GCP resources
 
 on:
   workflow_dispatch
-  
+
 env:
   GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
   GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
-
-defaults:
-  run: |
-    echo $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
-    echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
-    export ANSIBLE_HOST_KEY_CHECKING=False
-    sudo apt update
-    sudo apt install software-properties-common
-    sudo apt-add-repository --yes --update ppa:ansible/ansible
-    sudo apt install ansible python3-google-auth
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,5 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Destroy GCP resources
-        run: ansible-playbook clean-up.yml
+        run: |
+          echo $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
+          echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
+          export ANSIBLE_HOST_KEY_CHECKING=False
+          sudo apt update
+          sudo apt install software-properties-common
+          sudo apt-add-repository --yes --update ppa:ansible/ansible
+          sudo apt install ansible python3-google-auth
+          ansible-playbook clean-up.yml
             
