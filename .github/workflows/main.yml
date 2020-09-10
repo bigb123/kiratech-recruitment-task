@@ -2,8 +2,8 @@
 
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+runs-on: ubuntu-18.04
+
 on:
   push:
     branches: [ master ]
@@ -13,7 +13,6 @@ env:
   GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
 
 defaults:
-  runs-on: ubuntu-18.04
   run: |
     echo $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
     echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible

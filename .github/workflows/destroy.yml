@@ -1,11 +1,12 @@
 name: Destroy GCP resources
   
+runs-on: ubuntu-18.04
+
 env:
   GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
   GCP_SSH_KEY_FOR_ANSIBLE: ${{ secrets.GCP_SSH_KEY_FOR_ANSIBLE }}
 
 defaults:
-  runs-on: ubuntu-18.04
   run: |
     echo $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
     echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
