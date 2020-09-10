@@ -51,6 +51,7 @@
         project: "{{ project }}"
         auth_kind: "{{ auth_kind }}"
         service_account_file: "{{ credentials_file }}"
+        state: present
     register: backendservice
   - name: create a url map
     gcp_compute_url_map:
