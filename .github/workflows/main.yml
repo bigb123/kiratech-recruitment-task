@@ -24,6 +24,7 @@ jobs:
         run: |
           echo $GCP_CREDENTIALS_FILE | base64 -d > gcp_credentials_file.json
           echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
+          chmod 400 gcp_ssh_key_for_ansible
           export ANSIBLE_HOST_KEY_CHECKING=False
           sudo apt update
           sudo apt install software-properties-common
