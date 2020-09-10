@@ -30,6 +30,7 @@ jobs:
           sudo apt install software-properties-common
           sudo apt-add-repository --yes --update ppa:ansible/ansible
           sudo apt install ansible python3-google-auth
+          
       - name: Run Ansible playbook
         env:
           GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
