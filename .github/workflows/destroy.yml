@@ -1,6 +1,4 @@
 name: Destroy GCP resources
-  
-runs-on: ubuntu-18.04
 
 env:
   GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}
@@ -18,10 +16,10 @@ defaults:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    destroy:
-        steps:
-        - uses: actions/checkout@v2
-        - name: Destroy GCP resources
-            needs: build
-            run: ansible-playbook clean-up.yml
+  destroy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Destroy GCP resources
+        run: ansible-playbook clean-up.yml
             
