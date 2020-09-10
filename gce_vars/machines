@@ -4,4 +4,4 @@ machine_type: e2-standard-2
 image: https://www.googleapis.com/compute/v1/projects/centos-cloud/global/images/family/centos-8
 
 # Disk size 40 GB in base-2 notation
-disk_size_base-2_in_GB: 101000000000000000000000000000000000
+disk_size_base_2_in_GB: 101000000000000000000000000000000000
