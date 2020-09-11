@@ -27,4 +27,6 @@ jobs:
           echo $GCP_SSH_KEY_FOR_ANSIBLE | base64 -d > gcp_ssh_key_for_ansible
           chmod 400 gcp_ssh_key_for_ansible
           export ANSIBLE_HOST_KEY_CHECKING=False
+          sudo apt update
+          sudo apt install python3-google-auth
           ansible-playbook -i ansible_hosts gce-infrastructure-and-docker-deployment.yml
