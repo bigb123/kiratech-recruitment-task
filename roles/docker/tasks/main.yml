@@ -26,20 +26,22 @@
 #     name: docker-ce-cli
 #     state: latest
 
+- name: Deploy custom docker.service file
+  copy: src=docker.service dest=/usr/lib/systemd/system/docker.service
+        owner=root group=root mode=0644
+
 - name: Start docker service
   systemd:
+    daemon_reload: yes
     name: docker 
-    state: started
+    state: restarted
+    enabled: yes
 
-- name: Check docker version
-  command: docker version
+# - name: Check docker version
+#   command: docker version
 
 # - name: Set file stats on index.html
 #   file: path=/var/www/html/index.html owner=root group=root mode=0644
-
-# - name: Deploy modified apache conf
-#   copy: src=apache2.conf dest=/etc/apache2/apache2.conf
-#         owner=root group=root mode=0644
 
 # - name: Enable mod_headers
 #   file: path=/etc/apache2/mods-enabled/headers.load
