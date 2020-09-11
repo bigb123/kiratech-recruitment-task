@@ -3,7 +3,9 @@
 - name: Init the Docker Swarm Nodes
   docker_swarm:
     state: join
-    advertise_addr: 
-    join_token: 
+    tls: yes
+    # advertise_addr: 
+      # should be detected automatically
+    join_token: "{{ docker_swarm_manager.JoinTokens.Manager }}"
     remote_addrs: 
         - "{{ gce_manager_ip.address }}:2377"

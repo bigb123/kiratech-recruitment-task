@@ -4,3 +4,4 @@
   docker_swarm:
     state: present
     tls: yes
+  register: docker_swarm_manager

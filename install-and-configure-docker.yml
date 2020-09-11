@@ -11,9 +11,9 @@
   become_method: sudo
   roles:
     - docker_manager
-# - name: Configure Swarm Nodes
-#   hosts: docker_nodes
-#   become: yes
-#   become_method: sudo
-#   roles:
-#     - docker_nodes
+- name: Configure Swarm Nodes
+  hosts: docker_nodes
+  become: yes
+  become_method: sudo
+  roles:
+    - docker_nodes
