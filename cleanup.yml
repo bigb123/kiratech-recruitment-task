@@ -10,12 +10,33 @@
     - gce_vars/machines
     - gce_vars/zone
   tasks:
+    - name: destroy the instance group
+      gcp_compute_instance_group:
+        name: "instancegroup-globalforwardingrule"
+        zone: "{{zone}}"
+        project: "{{ project }}"
+        auth_kind: "{{ auth_kind }}"
+        service_account_file: "{{ credentials_file }}"
+        state: absent
+      register: instancegroup
+    - name: destroy the health check
+      gcp_compute_http_health_check:
+        name: "httphealthcheck-globalforwardingrule"
+        project: "{{ project }}"
+        auth_kind: "{{ auth_kind }}"
+        service_account_file: "{{ credentials_file }}"
+        state: absent
+      register: healthcheck
     - name: destroy the backend service
       gcp_compute_backend_service:
         name: "backendservice-globalforwardingrule"
         project: "{{ project }}"
         auth_kind: "{{ auth_kind }}"
         service_account_file: "{{ credentials_file }}"
+        health_checks: 
+          - "{{ healthcheck.selfLink }}"
+        backends:
+          - group: "{{ instancegroup.selfLink }}"
         state: absent
       register: backendservice
     - name: destroy the url map
@@ -43,21 +64,6 @@
         auth_kind: "{{ auth_kind }}"
         service_account_file: "{{ credentials_file }}"
         target: "{{ httpproxy.selfLink }}"
-        state: absent
-    - name: destroy the health check
-      gcp_compute_http_health_check:
-        name: "httphealthcheck-globalforwardingrule"
-        project: "{{ project }}"
-        auth_kind: "{{ auth_kind }}"
-        service_account_file: "{{ credentials_file }}"
-        state: absent
-    - name: destroy the instance group
-      gcp_compute_instance_group:
-        name: "instancegroup-globalforwardingrule"
-        zone: "{{zone}}"
-        project: "{{ project }}"
-        auth_kind: "{{ auth_kind }}"
-        service_account_file: "{{ credentials_file }}"
         state: absent
     - name: Delete the first instance
       gcp_compute_instance:
