@@ -13,7 +13,8 @@
     - name: destroy the target http proxy
       gcp_compute_target_http_proxy:
         name: "targethttpproxy-globalforwardingrule"
-        url_map: ''
+        url_map: 
+          - ''
         project: "{{ project }}"
         auth_kind: "{{ auth_kind }}"
         service_account_file: "{{ credentials_file }}"
