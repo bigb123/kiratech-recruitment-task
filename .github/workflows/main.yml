@@ -3,9 +3,9 @@
 name: Create
 
 on:
-  workflow_dispatch
-  # push:
-  #   branches: [ master ]
+  # workflow_dispatch
+  push:
+    branches: [ master ]
   
 env:
   GCP_CREDENTIALS_FILE: ${{ secrets.GCP_CREDENTIALS_FILE }}

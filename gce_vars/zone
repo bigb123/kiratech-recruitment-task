@@ -1,6 +1,7 @@
 ---
 # Variables defined for us-central1-a
-name_zonea: docker-swarm1
-name_zoneb: docker-swarm2
+name_zonea: docker-swarm-node1
+name_zoneb: docker-swarm-node2
+name_manager: docker-swarm-manager
 zone: us-central1-a
 region: us-central1

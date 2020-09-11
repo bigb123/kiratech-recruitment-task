@@ -2,4 +2,4 @@
 
 - import_playbook: gce-instances.yml
 - import_playbook: gce-lb.yml
-- import_playbook: install_docker.yml
+- import_playbook: install-and-configure-docker.yml

@@ -74,12 +74,60 @@
         service_account_file: "{{ credentials_file }}"
         auth_kind: "{{ auth_kind }}"
       register: gceb
+    - name: Create an IP address for the Docker manager instance
+      gcp_compute_address:
+        name: "{{ name_manager }}-ip"
+        region: "{{ region }}"
+        project: "{{ project }}"
+        service_account_file: "{{ credentials_file }}"
+        auth_kind: "{{ auth_kind }}"
+      register: gce_manager_ip
+    - name: Bring up the instance in the second zone.
+      gcp_compute_instance:
+        name: "{{ name_manager }}"
+        machine_type: "{{ machine_type }}"
+        disks:
+          - auto_delete: true
+            boot: true
+            initialize_params:
+              source_image: "{{ image }}"
+              disk_size_gb: "{{ disk_size_base_2_in_GB }}"
+        network_interfaces:
+          - access_configs:
+              - name: External NAT
+                nat_ip: "{{ gce_manager_ip }}"
+                type: ONE_TO_ONE_NAT
+        tags:
+          items:
+            - http-server
+            - https-server
+        zone: "{{ zone }}"
+        project: "{{ project }}"
+        service_account_file: "{{ credentials_file }}"
+        auth_kind: "{{ auth_kind }}"
+      register: gce_manager  
   post_tasks:
     - name: Wait for SSH for instances in first zone
       wait_for: delay=1 host={{ gcea_ip.address }} port=22 state=started timeout=30
     - name: Save host data for first zone
-      add_host: hostname={{ gcea_ip.address }} groupname=gce_instances_ips
+      add_host: 
+        hostname: "{{ gcea_ip.address }}"
+        groups:
+          - gce_instances_ips
+          - docker_nodes
     - name: Wait for SSH for instances in second zone
       wait_for: delay=1 host={{ gceb_ip.address }} port=22 state=started timeout=30
     - name: Save host data for second zone
-      add_host: hostname={{ gceb_ip.address }} groupname=gce_instances_ips
+      add_host: 
+        hostname: "{{ gceb_ip.address }}"
+        groups: 
+          - gce_instances_ips
+          - docker_nodes
+    - name: Wait for SSH for Docker Maager instance
+      wait_for: delay=1 host={{ gce_manager_ip.address }} port=22 state=started timeout=30
+    - name: Save Docker Manager host data
+      add_host: 
+        hostname: "{{ gce_manager_ip.address }}"
+        groups: 
+          - gce_instances_ips
+          - docker_manager

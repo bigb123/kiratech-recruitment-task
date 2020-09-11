@@ -1,0 +1,9 @@
+---
+
+- name: Init the Docker Swarm Nodes
+  docker_swarm:
+    state: join
+    advertise_addr: 
+    join_token: 
+    remote_addrs: 
+        - "{{ gce_manager_ip.address }}:2377"
