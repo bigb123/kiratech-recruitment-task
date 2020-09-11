@@ -30,9 +30,15 @@
 #     name: docker-ce-cli
 #     state: latest
 
-- name: Deploy custom docker.service file
-  copy: src=docker.service dest=/usr/lib/systemd/system/docker.service
-        owner=root group=root mode=0644
+# - name: Deploy custom docker.service file
+#   copy: src=docker.service dest=/usr/lib/systemd/system/docker.service
+#         owner=root group=root mode=0644
+
+- name: Add api access to the dockerd
+  lineinfile:
+    path: /usr/lib/systemd/system/docker.service
+    regexp: 'ExecStart=/usr/bin/dockerd -H fd://'
+    insertafter: ' -H tcp://0.0.0.0:8443'
 
 - name: Start docker service
   systemd:

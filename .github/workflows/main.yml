@@ -29,4 +29,4 @@ jobs:
           export ANSIBLE_HOST_KEY_CHECKING=False
           sudo apt update
           sudo apt install python3-google-auth
-          ansible-playbook -i ansible_hosts gce-infrastructure-and-docker-deployment.yml
+          ansible-playbook -vi ansible_hosts gce-infrastructure-and-docker-deployment.yml
