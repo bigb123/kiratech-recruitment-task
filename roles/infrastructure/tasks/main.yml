@@ -43,7 +43,7 @@
 
 - name: Install the Python Docker library
   pip:
-    name: docker
+    name: docker[tls]
     executable: pip3
 
 # - name: Check docker version
