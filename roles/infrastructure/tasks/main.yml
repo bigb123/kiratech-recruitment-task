@@ -41,6 +41,11 @@
     state: restarted
     enabled: yes
 
+- name: Install the Python Docker library
+  pip:
+    name: docker
+    executable: pip3
+
 # - name: Check docker version
 #   command: docker version
 
