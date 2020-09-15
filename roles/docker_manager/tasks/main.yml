@@ -7,4 +7,4 @@
   register: docker_swarm_manager
 - name: docker_swarm_manager value
   debug:
-  msg: "{{ docker_swarm_manager }}"
+    msg: "{{ docker_swarm_manager }}"
