@@ -6,6 +6,6 @@
     tls: yes
     # advertise_addr: 
       # should be detected automatically
-    join_token: "{{ docker_swarm_manager.JoinTokens.Manager }}"
+    join_token: "{{ docker_swarm_manager.JoinTokens.Worker }}"
     remote_addrs: 
-        - "{{ docker-swarm-manager.gce_manager_ip.address }}:2377"
+      - "{{ docker-swarm-manager.gce_manager_ip.address }}:2377"
