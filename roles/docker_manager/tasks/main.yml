@@ -5,9 +5,8 @@
     state: present
     tls: yes
   register: docker_swarm_manager
-- name: get facts from the swarm master
-  setup:
-  - debug: var=allfacts
+
+- debug: var=ansible_facts
 # - name: docker_swarm_manager value
 #   debug:
 #     msg: "{{ docker_swarm_manager }}"
