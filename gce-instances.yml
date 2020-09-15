@@ -133,5 +133,5 @@
           - docker_manager
     - name: print gce_manager_ip value
       debug:
-        msg:  {{  gce_manager_ip }}
+        msg:  "{{  gce_manager_ip }}"
 
