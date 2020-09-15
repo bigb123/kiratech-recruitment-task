@@ -6,7 +6,4 @@
     tls: yes
   register: docker_swarm_manager
 
-- debug: var=ansible_facts
-# - name: docker_swarm_manager value
-#   debug:
-#     msg: "{{ docker_swarm_manager }}"
+# - debug: var=ansible_facts
