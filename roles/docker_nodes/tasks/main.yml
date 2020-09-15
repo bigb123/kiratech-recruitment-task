@@ -4,6 +4,8 @@
 #   setup:
 #   - debug: var=allfacts
 - debug: var=hostvars['docker-swarm-manager']
+- debug: var=hostvars['localhost']
+- debug: var=hostvars['docker-swarm-node1']
 
 - name: Init the Docker Swarm Nodes
   docker_swarm:

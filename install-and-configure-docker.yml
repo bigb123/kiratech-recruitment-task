@@ -1,17 +1,20 @@
 ---
 - name: Install Docker on the instances
   hosts: gce_instances_ips
+  gather_facts: False
   become: yes
   become_method: sudo
   roles:
     - infrastructure
 - name: Configure Docker Swarm Manager
+  gather_facts: False
   hosts: docker_manager
   become: yes
   become_method: sudo
   roles:
     - docker_manager
 - name: Configure Swarm Nodes
+  gather_facts: False
   hosts: docker_nodes
   become: yes
   become_method: sudo
