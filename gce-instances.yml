@@ -82,8 +82,6 @@
         service_account_file: "{{ credentials_file }}"
         auth_kind: "{{ auth_kind }}"
       register: gce_manager_ip
-      debug:
-        msg:  gce_manager_ip value {{  gce_manager_ip }}
     - name: Bring up the instance in the second zone.
       gcp_compute_instance:
         name: "{{ name_manager }}"
@@ -133,4 +131,7 @@
         groups: 
           - gce_instances_ips
           - docker_manager
+    - name: print gce_manager_ip value
+      debug:
+        msg:  {{  gce_manager_ip }}
 
