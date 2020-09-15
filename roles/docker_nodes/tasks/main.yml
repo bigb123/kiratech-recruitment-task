@@ -12,4 +12,4 @@
       # should be detected automatically
     join_token: "{{ docker_swarm_manager.JoinTokens.Worker }}"
     remote_addrs: 
-      - "{{ gce_manager_ip.address }}:2377"
+      - "{{ hostvars['local']['gce_manager_ip']['address'] }}:2377"
