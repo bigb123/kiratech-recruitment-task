@@ -130,4 +130,4 @@
         hostname: "{{ gce_manager_ip.address }}"
         groups: 
           - gce_instances_ips
-          - docker_manager
+          - docker_managers

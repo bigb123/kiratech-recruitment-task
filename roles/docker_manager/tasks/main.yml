@@ -4,6 +4,9 @@
   docker_swarm:
     state: present
     tls: yes
-  register: initiated_swarm_manager
+  register: ready_swarm_manager
+- name: Export Swarm Workers token
+  set_fact:
+    swarm_worker_token: "{{ ready_swarm_manager.JoinTokens.Worker }}"
 
 # - debug: var=ansible_facts
