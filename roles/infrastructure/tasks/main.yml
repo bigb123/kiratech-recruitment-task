@@ -36,9 +36,8 @@
 
 - name: Add api access to the dockerd
   lineinfile:
-    state: present
     path: /usr/lib/systemd/system/docker.service
-    regexp: 'ExecStart=/usr/bin/dockerd -H fd://'
+    line: 'ExecStart=/usr/bin/dockerd -H fd://'
     insertafter: ' -H tcp://0.0.0.0:8443'
 
 - name: Start docker service
