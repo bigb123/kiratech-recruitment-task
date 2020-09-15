@@ -132,5 +132,5 @@
           - gce_instances_ips
           - docker_manager
 
-- debug:
-    msg:  gce_manager_ip value {{  gce_manager_ip }}
+debug:
+  msg:  gce_manager_ip value {{  gce_manager_ip }}
