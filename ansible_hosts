@@ -1,3 +1,6 @@
+[local]
+localhost ansible_connection=local
+
 [gce_instances]
 docker-swarm-node[1:2]
 docker-swarm-manager
