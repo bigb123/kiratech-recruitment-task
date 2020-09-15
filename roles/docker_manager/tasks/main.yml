@@ -5,3 +5,7 @@
     state: present
     tls: yes
   register: docker_swarm_manager
+
+post_tasks:
+    - debug:
+      msg: docker_swarm_manager value: {{ docker_swarm_manager }}
