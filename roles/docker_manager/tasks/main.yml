@@ -4,6 +4,6 @@
   docker_swarm:
     state: present
     tls: yes
-  register: docker_swarm_manager
+  register: initiated_swarm_manager
 
 # - debug: var=ansible_facts
