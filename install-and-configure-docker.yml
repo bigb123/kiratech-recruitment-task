@@ -7,14 +7,12 @@
   roles:
     - infrastructure
 - name: Configure Docker Swarm Manager
-  gather_facts: False
   hosts: docker_managers
   become: yes
   become_method: sudo
   roles:
     - docker_managers_role
 - name: Configure Swarm Nodes
-  gather_facts: False
   hosts: docker_nodes
   become: yes
   become_method: sudo

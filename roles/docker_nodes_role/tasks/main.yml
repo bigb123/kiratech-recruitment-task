@@ -1,8 +1,5 @@
 ---
 
-# - name: get facts from the swarm workers
-#   setup:
-#   - debug: var=allfacts
 - debug: var=hostvars['docker-swarm-manager']
 
 - name: Init the Docker Swarm Nodes
