@@ -6,7 +6,8 @@
 
 - name: Add yum docker repo
   command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-  warn: false
+  args:
+    warn: false
 
 - name: Install docker
   # Can't use the 'yum' Ansible module in this case as it will install
