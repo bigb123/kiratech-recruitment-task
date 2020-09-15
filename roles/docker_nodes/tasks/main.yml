@@ -3,7 +3,7 @@
 # - name: get facts from the swarm workers
 #   setup:
 #   - debug: var=allfacts
-- debug: var=hostvars[inventory_hostname]
+- debug: var=hostvars['docker_manager[0]']
 
 - name: Init the Docker Swarm Nodes
   docker_swarm:
@@ -11,6 +11,6 @@
     tls: yes
     # advertise_addr: 
       # should be detected automatically
-    join_token: "{{ hostvars['docker-swarm-manager']['JoinTokens']['Worker'] }}"
+    join_token: "{{ hostvars['docker-manager[0]']['JoinTokens']['Worker'] }}"
     remote_addrs: 
       - "{{ hostvars['localhost']['gce_manager_ip']['address'] }}:2377"
