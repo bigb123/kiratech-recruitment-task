@@ -7,5 +7,6 @@
   register: docker_swarm_manager
 
 - post_tasks:
-  - debug:
-    msg: docker_swarm_manager value: {{ docker_swarm_manager }}
+  - name: docker_swarm_manager value
+    debug:
+    msg: "{{ docker_swarm_manager }}"
