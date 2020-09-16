@@ -1,6 +1,6 @@
 ---
 
-- debug: var=hostvars['docker_managers_ips'[0]].ready_swarm_manager
+- debug: var=hostvars[groups['docker_managers_ips'][0]].ready_swarm_manager
 
 - name: Init the Docker Swarm Nodes
   docker_swarm:
