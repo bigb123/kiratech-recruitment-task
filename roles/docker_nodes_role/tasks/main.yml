@@ -1,13 +1,11 @@
 ---
 
-- debug: var=hostvars['docker_managers_ips[0]'].swarm_worker_token
-
 - name: Init the Docker Swarm Nodes
   docker_swarm:
     state: join
     tls: yes
     # advertise_addr: 
       # should be detected automatically
-    join_token: "{{ hostvars['docker_managers_ips[0]'].ready_swarm_manager.swarm_facts.JoinTokens.Worker }}"
+    join_token: "{{ hostvars['docker-swarm-manager'].ready_swarm_manager.swarm_facts.JoinTokens.Worker }}"
     remote_addrs: 
       - "{{ hostvars['localhost']['gce_manager_ip']['address'] }}:2377"
