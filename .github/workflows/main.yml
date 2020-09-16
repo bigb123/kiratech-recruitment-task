@@ -13,9 +13,19 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  linter:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Ansible linter check
+        run: |
+          pip3 install ansible-lint
+          ansible-lint
+
   build:
     runs-on: ubuntu-18.04
+    needs: linter
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2

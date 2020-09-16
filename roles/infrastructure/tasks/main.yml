@@ -1,11 +1,12 @@
 ---
 - name: Add yum package yum-utils
-  yum: 
+  yum:
     name: yum-utils
-    state: latest 
+    state: present
 
 - name: Add yum docker repo
   command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  register: yum_config_manager_command
 
 - name: Install docker
   # Can't use the 'yum' Ansible module in this case as it will install
@@ -42,7 +43,7 @@
 - name: Start docker service
   systemd:
     daemon_reload: yes
-    name: docker 
+    name: docker
     state: restarted
     enabled: yes
 
