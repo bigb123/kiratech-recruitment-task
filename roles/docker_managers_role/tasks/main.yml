@@ -8,6 +8,7 @@
 # - debug: var=ready_swarm_manager
 - name: Export Swarm Workers token
   set_fact:
+    cacheable: yes
     swarm_worker_token: "{{ ready_swarm_manager.swarm_facts.JoinTokens.Worker }}"
 - setup:
   register: allfacts
