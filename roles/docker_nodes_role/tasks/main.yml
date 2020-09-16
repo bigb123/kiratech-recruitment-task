@@ -1,5 +1,7 @@
 ---
 
+- debug: var=hostvars['docker-swarm-manager'].swarm_worker_token
+
 - name: Init the Docker Swarm Nodes
   docker_swarm:
     state: join
