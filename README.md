@@ -51,6 +51,10 @@ Cleanup the GCP after the development (remove all resources) still doesn't work.
 The instructions are in `cleanup.yml` playbook but running it with Ansible return 
 errors.
 
+Also, the Ansible linter could be improved by not breaking the pipeline execution
+on warnings. Just on errors
+
+
 # The inspiration of the Ansible usage
 
 The inspiration how to use Ansible with Google Cloud comes from the Google 
