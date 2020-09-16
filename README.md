@@ -44,3 +44,8 @@ this resource is missing.
 
 The workaround is to comment out everything that is in the "create a backend service" 
 section and that depends on it (everything below this module).
+
+# The inspiration of the Ansible usage
+
+The inspiration how to use Ansible with Google Cloud comes from the Google 
+demo project https://github.com/GoogleCloudPlatform/compute-video-demo-ansible. 
