@@ -45,6 +45,12 @@ this resource is missing.
 The workaround is to comment out everything that is in the "create a backend service" 
 section and that depends on it (everything below this module).
 
+# The Work in Progress
+
+Cleanup the GCP after the development (remove all resources) still doesn't work.
+The instructions are in `cleanup.yml` playbook but running it with Ansible return 
+errors.
+
 # The inspiration of the Ansible usage
 
 The inspiration how to use Ansible with Google Cloud comes from the Google 
