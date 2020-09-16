@@ -7,13 +7,13 @@
   roles:
     - infrastructure
 - name: Configure Docker Swarm Manager
-  hosts: docker_managers
+  hosts: docker_managers_ips
   become: yes
   become_method: sudo
   roles:
     - docker_managers_role
 - name: Configure Swarm Nodes
-  hosts: docker_nodes
+  hosts: docker_nodes_ips
   become: yes
   become_method: sudo
   roles:

@@ -82,7 +82,7 @@
         service_account_file: "{{ credentials_file }}"
         auth_kind: "{{ auth_kind }}"
       register: gce_manager_ip
-    - name: Bring up the instance in the second zone.
+    - name: Bring up the instance Docker Manager instance.
       gcp_compute_instance:
         name: "{{ name_manager }}"
         machine_type: "{{ machine_type }}"
@@ -114,7 +114,7 @@
         hostname: "{{ gcea_ip.address }}"
         groups:
           - gce_instances_ips
-          - docker_nodes
+          - docker_nodes_ips
     - name: Wait for SSH for instances in second zone
       wait_for: delay=1 host={{ gceb_ip.address }} port=22 state=started timeout=30
     - name: Save host data for second zone
@@ -122,7 +122,7 @@
         hostname: "{{ gceb_ip.address }}"
         groups: 
           - gce_instances_ips
-          - docker_nodes
+          - docker_nodes_ips
     - name: Wait for SSH for Docker Maager instance
       wait_for: delay=1 host={{ gce_manager_ip.address }} port=22 state=started timeout=30
     - name: Save Docker Manager host data
@@ -130,4 +130,4 @@
         hostname: "{{ gce_manager_ip.address }}"
         groups: 
           - gce_instances_ips
-          - docker_managers
+          - docker_managers_ips
