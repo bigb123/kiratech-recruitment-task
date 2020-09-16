@@ -22,7 +22,12 @@ jobs:
         run: |
           sudo apt update
           sudo apt install ansible-lint
-          ansible-lint
+          ansible-lint \
+            gce-*.yml \
+            install-and-configure-docker.yml \
+            roles/docker_managers_role/tasks/main.yml \
+            roles/docker_nodes_role/tasks/main.yml \
+            roles/infrastructure/tasks/main.yml
 
   build:
     runs-on: ubuntu-18.04
