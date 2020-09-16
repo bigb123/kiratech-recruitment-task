@@ -1,7 +1,6 @@
 ---
 
-- debug: var=hostvars[groups['docker_managers_ips'][0]]
-- debug: var=hostvars[inventory_hostname]
+- debug: var=hostvars['localhost'].gce_manager
 - name: Init the Docker Swarm Nodes
   docker_swarm:
     state: join
