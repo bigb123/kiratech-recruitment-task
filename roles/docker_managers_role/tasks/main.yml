@@ -10,6 +10,4 @@
   set_fact:
     cacheable: yes
     swarm_worker_token: "{{ ready_swarm_manager.swarm_facts.JoinTokens.Worker }}"
-- setup:
-  register: allfacts
-- debug: var=allfacts
+- debug: var=swarm_worker_token
