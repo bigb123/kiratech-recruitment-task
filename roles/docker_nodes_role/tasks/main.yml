@@ -8,4 +8,4 @@
     advertise_addr: eth0
     join_token: "{{ hostvars[groups['docker_managers_ips'][0]].ready_swarm_manager.swarm_facts.JoinTokens.Worker }}"
     remote_addrs: 
-      - "{{ hostvars['localhost'].gce_manager.networkInterfaces.networkIP }}:2377"
+      - "{{ hostvars['localhost'].gce_manager.networkInterfaces[0].networkIP }}:2377"
