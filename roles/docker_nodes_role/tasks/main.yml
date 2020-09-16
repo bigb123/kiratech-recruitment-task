@@ -1,6 +1,5 @@
 ---
 
-- debug: var=hostvars['localhost'].gce_manager
 - name: Init the Docker Swarm Nodes
   docker_swarm:
     state: join

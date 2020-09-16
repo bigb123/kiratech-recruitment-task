@@ -32,10 +32,6 @@
 #     name: docker-ce-cli
 #     state: latest
 
-# - name: Deploy custom docker.service file
-#   copy: src=docker.service dest=/usr/lib/systemd/system/docker.service
-#         owner=root group=root mode=0644
-
 - name: Add api access to the dockerd
   lineinfile:
     path: /usr/lib/systemd/system/docker.service
@@ -54,16 +50,3 @@
   pip:
     name: docker[tls]
     executable: pip3
-
-# - name: Check docker version
-#   command: docker version
-
-# - name: Set file stats on index.html
-#   file: path=/var/www/html/index.html owner=root group=root mode=0644
-
-# - name: Enable mod_headers
-#   file: path=/etc/apache2/mods-enabled/headers.load
-#         src=/etc/apache2/mods-available/headers.load state=link
-
-# - name: Re-start apache
-#   service: name=apache2 state=restarted

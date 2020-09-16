@@ -5,10 +5,3 @@
     state: present
     tls: yes
   register: ready_swarm_manager
-# - debug: var=ready_swarm_manager # this works
-# - name: Export Swarm Workers token
-#   set_fact:
-#     cacheable: yes
-#     swarm_worker_token: "{{ ready_swarm_manager.swarm_facts.JoinTokens.Worker }}"
-# - debug: var=swarm_worker_token
-# - debug: var=hostvars[inventory_hostname]
