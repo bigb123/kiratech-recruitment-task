@@ -105,12 +105,12 @@
         project: "{{ project }}"
         service_account_file: "{{ credentials_file }}"
         auth_kind: "{{ auth_kind }}"
-      register: gce_manager  
+      register: gce_manager
   post_tasks:
     - name: Wait for SSH for instances in first zone
       wait_for: delay=1 host={{ gcea_ip.address }} port=22 state=started timeout=30
     - name: Save host data for first zone
-      add_host: 
+      add_host:
         hostname: "{{ gcea_ip.address }}"
         groups:
           - gce_instances_ips
@@ -118,16 +118,16 @@
     - name: Wait for SSH for instances in second zone
       wait_for: delay=1 host={{ gceb_ip.address }} port=22 state=started timeout=30
     - name: Save host data for second zone
-      add_host: 
+      add_host:
         hostname: "{{ gceb_ip.address }}"
-        groups: 
+        groups:
           - gce_instances_ips
           - docker_nodes_ips
     - name: Wait for SSH for Docker Maager instance
       wait_for: delay=1 host={{ gce_manager_ip.address }} port=22 state=started timeout=30
     - name: Save Docker Manager host data
-      add_host: 
+      add_host:
         hostname: "{{ gce_manager_ip.address }}"
-        groups: 
+        groups:
           - gce_instances_ips
           - docker_managers_ips

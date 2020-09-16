@@ -1,5 +1,5 @@
 ---
-  
+
 # Load balancer for Swarm instances
 
 - name: Set up networking
@@ -22,7 +22,7 @@
       zone: "{{zone}}"
       instances:
         - "{{ gcea }}"
-        - "{{ gceb }}" 
+        - "{{ gceb }}"
       project: "{{ project }}"
       auth_kind: "{{ auth_kind }}"
       service_account_file: "{{ credentials_file }}"

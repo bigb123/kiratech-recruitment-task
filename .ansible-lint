@@ -1,2 +1,3 @@
 warn_list: 
   - '301' 
+  - 'ANSIBLE0012'

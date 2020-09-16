@@ -10,7 +10,7 @@
 
 - name: Install docker
   # Can't use the 'yum' Ansible module in this case as it will install
-  # default Docker version (19.x). Its requirement is to install 
+  # default Docker version (19.x). Its requirement is to install
   # containerd.io >= 2:2x which can't be fulfilled. '--nobest' option
   # lets install latest Docker that dependencies can be met.
   command: yum install -y docker-ce docker-ce-cli containerd.io --nobest
@@ -18,7 +18,7 @@
     warn: false
 
 # - name: Install containerd.io
-#   yum: 
+#   yum:
 #     name: containerd.io
 #     state: latest
 #     enablerepo: docker-ce-test
@@ -29,7 +29,7 @@
 #     state: latest
 
 # - name: Install docker-ce-cli
-#   yum: 
+#   yum:
 #     name: docker-ce-cli
 #     state: latest
 
