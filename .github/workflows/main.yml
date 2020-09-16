@@ -20,7 +20,7 @@ jobs:
 
       - name: Ansible linter check
         run: |
-          pip3 install ansible-lint
+          pip3 install setuptools ansible-lint
           ansible-lint
 
   build:
