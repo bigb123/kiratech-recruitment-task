@@ -10,4 +10,5 @@
   set_fact:
     cacheable: yes
     swarm_worker_token: "{{ ready_swarm_manager.swarm_facts.JoinTokens.Worker }}"
-- debug: var=swarm_worker_token
+# - debug: var=swarm_worker_token
+# - debug: var=hostvars[inventory_hostname]
