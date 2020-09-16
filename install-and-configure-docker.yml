@@ -1,6 +1,6 @@
 ---
 - name: Install Docker on the instances
-  hosts: gce_instances
+  hosts: gce_instances_ips
   gather_facts: False
   vars_files:
     - gce_vars/auth
@@ -11,7 +11,7 @@
   roles:
     - infrastructure
 - name: Configure Docker Swarm Manager
-  hosts: managers
+  hosts: docker_managers_ips
   gather_facts: False
   vars_files:
     - gce_vars/auth
@@ -22,7 +22,7 @@
   roles:
     - docker_managers_role
 - name: Configure Swarm Nodes
-  hosts: nodes
+  hosts: docker_nodes_ips
   gather_facts: False
   vars_files:
     - gce_vars/auth
