@@ -9,5 +9,4 @@
 - name: Export Swarm Workers token
   set_fact:
     swarm_worker_token: "{{ ready_swarm_manager.swarm_facts.JoinTokens.Worker }}"
-
-# - debug: var=ansible_facts
+- debug: var=ready_swarm_manager
